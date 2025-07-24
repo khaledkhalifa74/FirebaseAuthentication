@@ -1,4 +1,4 @@
-import 'package:firebase_auth/features/Authentication/presentation/views/widgets/login_view_body.dart';
+import 'package:firebase_features/features/Authentication/presentation/views/widgets/login_view_body.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {

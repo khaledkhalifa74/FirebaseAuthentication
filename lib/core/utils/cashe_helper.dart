@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_auth/core/utils/globals.dart' as globals;
+import 'package:firebase_features/core/utils/globals.dart' as globals;
 
 class CasheHelper {
   static SharedPreferences? sharedPreferences;

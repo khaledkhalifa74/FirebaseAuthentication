@@ -1,13 +1,15 @@
-import 'package:firebase_auth/features/Authentication/presentation/views/login_view.dart';
-import 'package:firebase_auth/simple_bloc_observer.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_features/features/Authentication/presentation/views/login_view.dart';
+import 'package:firebase_features/firebase_options.dart';
+import 'package:firebase_features/simple_bloc_observer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_auth/core/utils/globals.dart' as globals;
-import 'package:firebase_auth/core/utils/colors.dart';
+import 'package:firebase_features/core/utils/globals.dart' as globals;
+import 'package:firebase_features/core/utils/colors.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:firebase_auth/core/utils/colors.dart';
+import 'package:firebase_features/core/utils/colors.dart';
 
 abstract class Styles {
   static TextStyle textStyle12 = TextStyle(
