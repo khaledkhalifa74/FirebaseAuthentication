@@ -13,3 +13,5 @@ const kYellowColor = Colors.yellow;
 const kBlackColor = Colors.black;
 const kWhiteColor = Colors.white;
 const kTextFieldHintColor = Color(0xff96A0B6);
+const kDisablesButtonColor = Color(0xffb1b2cb);
+

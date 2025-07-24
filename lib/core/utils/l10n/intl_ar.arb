@@ -1,4 +1,6 @@
 {
   "@@locale":"ar",
-  "loginDoneSuccessfully":"تم تسجيل الدخول بنجاح"
+  "loginDoneSuccessfully":"تم تسجيل الدخول بنجاح",
+  "optional":"(اختياري)",
+  "cantBeEmpty":"لا يمكن ان يكون هذا الحقل فارغا"
 }

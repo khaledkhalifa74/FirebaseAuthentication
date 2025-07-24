@@ -1,3 +1,3 @@
 class AssetsData {
-  // static const appLogo = 'assets/images/logo.svg';
+  static const login = 'assets/images/login.svg';
 }

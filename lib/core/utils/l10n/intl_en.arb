@@ -3,5 +3,13 @@
   "loginDoneSuccessfully":"Login done successfully",
   "@loginDoneSuccessfully":{
     "loginDoneSuccessfully":""
+  },
+  "optional":"(optional)",
+  "@optional":{
+    "optional":""
+  },
+  "cantBeEmpty":"This field can't be empty",
+  "@cantBeEmpty":{
+    "cantBeEmpty":""
   }
 }
