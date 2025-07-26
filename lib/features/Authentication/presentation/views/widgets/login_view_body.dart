@@ -1,7 +1,9 @@
+import 'package:firebase_features/core/utils/assets.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/login_cubit/login_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -13,7 +15,7 @@ class LoginViewBody extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-
+            SvgPicture.asset(AssetsData.loginImage),
           ],
         );
       },
