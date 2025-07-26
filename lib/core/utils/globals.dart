@@ -1,5 +1,6 @@
 library;
 import 'dart:ui';
+import 'package:firebase_features/main.dart';
 import 'package:flutter/material.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -13,4 +14,8 @@ String convertArabicNumbersToEnglish(String input) {
     input = input.replaceAll(arabicDigits[i], englishDigits[i]);
   }
   return input;
+}
+
+Future<void> restartApp() async {
+  runApp(MyApp());
 }

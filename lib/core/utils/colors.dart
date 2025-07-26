@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 const kPrimaryColor = Color(0xFF2176FF);
 const kLightBlueColor = Color(0xFF33A1FD);
-const kBorderColor = Color(0xFF03254E);
+const kFocusedBorderColor = Color(0xFF03254E);
+const kButtonColor = Color(0xFF03254E);
+const kBorderColor = Color(0xffE6E7EC);
 const kBGColor = Color(0xFFFFFFFF);
 const kSideBG = Color(0xFFF7FCFF);
 const kDarkBlackColor = Color(0xff05000D);

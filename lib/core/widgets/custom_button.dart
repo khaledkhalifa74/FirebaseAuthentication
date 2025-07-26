@@ -47,7 +47,7 @@ class CustomButton extends StatelessWidget {
       child: Material(
         color: isDisabled != null && isDisabled == true
             ? disabledButtonColor ?? kDisablesButtonColor
-            : backgroundColor ?? kPrimaryColor,
+            : backgroundColor ?? kButtonColor,
         borderRadius: BorderRadius.circular(12.0),
         child: InkWell(
           onTap: isDisabled != null && isDisabled == true ? null : itemCallBack,

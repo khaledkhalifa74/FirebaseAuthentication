@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
       splitScreenMode: true,
       builder: (context, child){
         return MaterialApp(
-          title: 'Firebase Auth',
+          title: 'Firebase Features',
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

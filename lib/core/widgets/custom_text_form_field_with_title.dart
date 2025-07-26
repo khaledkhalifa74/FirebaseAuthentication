@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:firebase_features/core/utils/globals.dart' as globals;
 
-class TextFormFieldWithTitle extends StatefulWidget {
+class CustomTextFormFieldWithTitle extends StatefulWidget {
   final String title;
   final String? placeholder;
   final TextEditingController? controller;
@@ -17,6 +17,7 @@ class TextFormFieldWithTitle extends StatefulWidget {
   final void Function()? onTap;
   final bool? isOptional;
   final Widget? suffix;
+  final Widget? prefix;
   final bool? obscureText;
   final void Function(String)? onChanged;
   final TextStyle? titleStyle;
@@ -25,7 +26,7 @@ class TextFormFieldWithTitle extends StatefulWidget {
   final int? minLines;
   final int? maxLines;
 
-  const TextFormFieldWithTitle({
+  const CustomTextFormFieldWithTitle({
     super.key,
     required this.title,
     this.controller,
@@ -43,14 +44,14 @@ class TextFormFieldWithTitle extends StatefulWidget {
     this.onTap,
     this.readOnly,
     this.focusNode,
-    this.minLines, this.maxLines,
+    this.minLines, this.maxLines, this.prefix,
   });
 
   @override
-  TextFormFieldWithTitleState createState() => TextFormFieldWithTitleState();
+  CustomTextFormFieldWithTitleState createState() => CustomTextFormFieldWithTitleState();
 }
 
-class TextFormFieldWithTitleState extends State<TextFormFieldWithTitle> {
+class CustomTextFormFieldWithTitleState extends State<CustomTextFormFieldWithTitle> {
 
   @override
   void initState() {
@@ -149,6 +150,19 @@ class TextFormFieldWithTitleState extends State<TextFormFieldWithTitle> {
                 },
             decoration: InputDecoration(
               suffixIcon: widget.suffix,
+              prefixIcon: widget.prefix != null
+                  ? Padding(
+                padding: EdgeInsets.only(
+                    right: globals.appLang == 'en' ? 0 : 8,
+                  left: globals.appLang == 'en' ? 8 : 0
+                ),
+                child: widget.prefix,
+              )
+                  : null,
+              prefixIconConstraints: BoxConstraints(
+                minWidth: 40,
+                minHeight: 0,
+              ),
               hintText: widget.placeholder,
               hintStyle: Styles.textStyle16.copyWith(
                 fontWeight: FontWeight.w400,
@@ -157,7 +171,7 @@ class TextFormFieldWithTitleState extends State<TextFormFieldWithTitle> {
               focusedBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                   borderSide: BorderSide(
-                    color: kPrimaryColor,
+                    color: kFocusedBorderColor,
                     width: 1,
                     style: BorderStyle.solid,
                   )),

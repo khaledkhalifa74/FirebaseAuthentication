@@ -2,5 +2,21 @@
   "@@locale":"ar",
   "loginDoneSuccessfully":"تم تسجيل الدخول بنجاح",
   "optional":"(اختياري)",
-  "cantBeEmpty":"لا يمكن ان يكون هذا الحقل فارغا"
+  "cantBeEmpty":"لا يمكن ان يكون هذا الحقل فارغا",
+  "emailAddress":"البريد الإلكتروني",
+  "enterEmail":"أدخل البريد الإلكتروني",
+  "password":"كلمة المرور",
+  "confirmPassword":"تأكيد كلمة المرور",
+  "enterPassword":"أدخل كلمة المرور",
+  "enterConfirmPassword":"أدخل تأكيد كلمة المرور",
+  "login":"تسجيل الدخول",
+  "loginWithGmail":"تسجيل الدخول عن طريق جوجل",
+  "signUpForNewAcc":"سجل للحصول على حساب جديد",
+  "or":"أو",
+  "enterValidEmail":"يرجى إدخال بريد إلكتروني صحيح",
+  "passwordLength":"يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
+  "passwordUppercase":"يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+  "passwordLowercase":"يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+  "passwordNumber":"يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+  "passwordCharacter":"يجب أن تحتوي كلمة المرور على رمز واحد على الأقل [@#$%&*]"
 }
