@@ -3,5 +3,77 @@
   "loginDoneSuccessfully":"Login done successfully",
   "@loginDoneSuccessfully":{
     "loginDoneSuccessfully":""
+  },
+  "optional":"(optional)",
+  "@optional":{
+    "optional":""
+  },
+  "cantBeEmpty":"This field can't be empty",
+  "@cantBeEmpty":{
+    "cantBeEmpty":""
+  },
+  "emailAddress":"Email address",
+  "@emailAddress":{
+    "emailAddress":""
+  },
+  "enterEmail":"Enter e-mail address",
+  "@enterEmail":{
+    "enterEmail":""
+  },
+  "password":"Password",
+  "@password":{
+    "password":""
+  },
+  "confirmPassword":"Confirm password",
+  "@confirmPassword":{
+    "confirmPassword":""
+  },
+  "enterPassword":"Enter password",
+  "@enterPassword":{
+    "enterPassword":""
+  },
+  "enterConfirmPassword":"Enter confirm password",
+  "@enterConfirmPassword":{
+    "enterConfirmPassword":""
+  },
+  "login":"Login",
+  "@login":{
+    "login":""
+  },
+  "loginWithGmail":"Login with gmail",
+  "@loginWithGmail":{
+    "loginWithGmail":""
+  },
+  "signUpForNewAcc":"Sign up for new account",
+  "@signUpForNewAcc":{
+    "signUpForNewAcc":""
+  },
+  "or":"Or",
+  "@or":{
+    "or":""
+  },
+  "enterValidEmail":"Please enter valid email",
+  "@enterValidEmail":{
+    "enterValidEmail":""
+  },
+  "passwordLength":"Password must contain at least 8 character",
+  "@passwordLength":{
+    "passwordLength":""
+  },
+  "passwordUppercase":"Password must contain at least one uppercase letter",
+  "@passwordUppercase":{
+    "passwordUppercase":""
+  },
+  "passwordLowercase":"Password must contain at least one lowercase letter",
+  "@passwordLowercase":{
+    "passwordLowercase":""
+  },
+  "passwordNumber":"Password must contain at least one number",
+  "@passwordNumber":{
+    "passwordNumber":""
+  },
+  "passwordCharacter":"Password must contain at least one special character [@#$%&*]",
+  "@passwordCharacter":{
+    "passwordCharacter":""
   }
 }
