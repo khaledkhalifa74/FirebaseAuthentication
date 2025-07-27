@@ -75,5 +75,21 @@
   "passwordCharacter":"Password must contain at least one special character [@#$%&*]",
   "@passwordCharacter":{
     "passwordCharacter":""
+  },
+  "signUp":"Sign up",
+  "@signUp":{
+    "signUp":""
+  },
+  "passwordDoesntMatch":"Password doesn't match",
+  "@passwordDoesntMatch":{
+    "passwordDoesntMatch":""
+  },
+  "userName":"User name",
+  "@userName":{
+    "userName":""
+  },
+  "enterUserName":"Enter user name",
+  "@enterUserName":{
+    "enterUserName":""
   }
 }
