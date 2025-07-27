@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_features/features/Authentication/presentation/views/login_view.dart';
+import 'package:firebase_features/features/Authentication/presentation/views/register_view.dart';
 import 'package:firebase_features/firebase_options.dart';
 import 'package:firebase_features/simple_bloc_observer.dart';
 import 'package:flutter/foundation.dart';
@@ -115,6 +116,7 @@ class _MyAppState extends State<MyApp> {
           initialRoute: LoginView.id,
           routes: {
             LoginView.id: (context) => const LoginView(),
+            RegisterView.id: (context) => const RegisterView(),
           },
         );
       }

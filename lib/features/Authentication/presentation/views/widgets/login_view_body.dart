@@ -1,17 +1,21 @@
 import 'package:firebase_features/core/utils/assets.dart';
 import 'package:firebase_features/core/utils/colors.dart';
+import 'package:firebase_features/core/utils/functions/success_failure_alert.dart';
 import 'package:firebase_features/core/utils/styles.dart';
 import 'package:firebase_features/core/widgets/custom_button.dart';
+import 'package:firebase_features/core/widgets/custom_loading_indicator.dart';
 import 'package:firebase_features/core/widgets/custom_text_form_field_with_title.dart';
 import 'package:firebase_features/core/widgets/language_drop_down.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/login_cubit/login_states.dart';
+import 'package:firebase_features/features/Authentication/presentation/views/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:firebase_features/core/utils/globals.dart' as globals;
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -25,12 +29,37 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   TextEditingController passwordController = TextEditingController();
   final _loginFormKey = GlobalKey<FormState>();
   bool isLoading = false;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
-    final emailRegex = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     return BlocConsumer<LoginCubit, LoginStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is StartLoadingLoginState){
+          isLoading = true;
+        }else if (state is StopLoadingLoginState){
+          isLoading = false;
+        }
+
+        if(state is LoginSuccessState){
+          successFailureAlert(
+            context,
+            isError: false,
+            message: AppLocalizations.of(context)!.loginDoneSuccessfully,
+          );
+        }else if(state is LoginFailureState){
+          successFailureAlert(
+            context,
+            isError: true,
+            message: state.errorMessage!,
+          );
+        }
+      },
       builder: (context, state) {
         final loginCubit = LoginCubit.get(context);
         return SingleChildScrollView(
@@ -61,16 +90,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     prefix: Icon(
                         Iconsax.sms,
                     ),
-                    // validator: (data) {
-                    //   if (data!.isEmpty) {
-                    //     return AppLocalizations.of(context)!.cantBeEmpty;
-                    //   } else {
-                    //     if (!emailRegex.hasMatch(data)) {
-                    //       return AppLocalizations.of(context)!.enterValidEmail;
-                    //     }
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(
                     height: 16,
@@ -95,39 +114,57 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   const SizedBox(
                     height: 32,
                   ),
-                  CustomButton(
-                      text: AppLocalizations.of(context)!.login,
-                      borderColor: Colors.transparent,
-                      itemCallBack: (){},
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  CustomButton(
-                    text: AppLocalizations.of(context)!.signUpForNewAcc,
-                    textColor: kButtonColor,
-                    backgroundColor: kWhiteColor,
-                    borderColor: kBorderColor,
-                    itemCallBack: (){},
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.or,
-                      style: Styles.textStyle16,
-                    ),
-                  ),
-                  CustomButton(
-                      text: AppLocalizations.of(context)!.loginWithGmail,
-                      textColor: kButtonColor,
-                      backgroundColor: kWhiteColor,
-                      borderColor: kBorderColor,
-                      itemCallBack: (){},
-                  ),
-                  const SizedBox(
-                    height: 16,
+                  isLoading == true
+                      ? const Center(
+                    child: CustomLoadingIndicator(),
+                  )
+                      : Column(
+                    children: [
+                      CustomButton(
+                          text: AppLocalizations.of(context)!.login,
+                          borderColor: Colors.transparent,
+                          itemCallBack: (){
+                            if (_loginFormKey.currentState!.validate()){
+                              // login here
+                              loginCubit.loginUser(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim(),
+                              );
+                            }
+                          },
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      CustomButton(
+                        text: AppLocalizations.of(context)!.signUpForNewAcc,
+                        textColor: kButtonColor,
+                        backgroundColor: kWhiteColor,
+                        borderColor: kBorderColor,
+                        itemCallBack: (){
+                          globals.navigatorKey.currentState!.pushNamed(RegisterView.id);
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                        ),
+                        child: Text(
+                          AppLocalizations.of(context)!.or,
+                          style: Styles.textStyle16,
+                        ),
+                      ),
+                      CustomButton(
+                          text: AppLocalizations.of(context)!.loginWithGmail,
+                          textColor: kButtonColor,
+                          backgroundColor: kWhiteColor,
+                          borderColor: kBorderColor,
+                          itemCallBack: (){},
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                    ],
                   ),
                 ],
               ),
