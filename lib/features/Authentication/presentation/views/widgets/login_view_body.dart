@@ -1,5 +1,6 @@
 import 'package:firebase_features/core/utils/assets.dart';
 import 'package:firebase_features/core/utils/colors.dart';
+import 'package:firebase_features/core/utils/functions/success_failure_alert.dart';
 import 'package:firebase_features/core/utils/styles.dart';
 import 'package:firebase_features/core/widgets/custom_button.dart';
 import 'package:firebase_features/core/widgets/custom_text_form_field_with_title.dart';
@@ -37,7 +38,27 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is StartLoadingLoginState){
+          isLoading = true;
+        }else if (state is StopLoadingLoginState){
+          isLoading = false;
+        }
+
+        if(state is LoginSuccessState){
+          successFailureAlert(
+            context,
+            isError: false,
+            message: 'Login success',
+          );
+        }else if(state is LoginFailureState){
+          successFailureAlert(
+            context,
+            isError: true,
+            message: state.errorMessage!,
+          );
+        }
+      },
       builder: (context, state) {
         final loginCubit = LoginCubit.get(context);
         return SingleChildScrollView(

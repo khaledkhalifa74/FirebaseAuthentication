@@ -91,5 +91,9 @@
   "enterUserName":"Enter user name",
   "@enterUserName":{
     "enterUserName":""
+  },
+  "ok":"Ok",
+  "@ok":{
+    "ok":""
   }
 }

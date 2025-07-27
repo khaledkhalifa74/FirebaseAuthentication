@@ -22,5 +22,6 @@
   "signUp":"تسجيل",
   "passwordDoesntMatch":"كلمة المرور غير متطابقة",
   "userName":"اسم المستخدم",
-  "enterUserName":"أدخل اسم المستخدم"
+  "enterUserName":"أدخل اسم المستخدم",
+  "ok":"حسنا"
 }

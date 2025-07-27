@@ -20,7 +20,6 @@ class RegisterViewBody extends StatefulWidget {
 
 class _RegisterViewBodyState extends State<RegisterViewBody> {
   TextEditingController emailController = TextEditingController();
-  TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final _registerFormKey = GlobalKey<FormState>();
@@ -29,7 +28,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   @override
   void dispose() {
     emailController.dispose();
-    userNameController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
     super.dispose();
@@ -76,18 +74,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       width: 220.w,
                       height: 220.h,
                     ),
-                  ),
-                  CustomTextFormFieldWithTitle(
-                    title: AppLocalizations.of(context)!.userName,
-                    controller: userNameController,
-                    placeholder: AppLocalizations.of(context)!.enterUserName,
-                    inputType: TextInputType.name,
-                    prefix: Icon(
-                      Iconsax.user,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
                   ),
                   CustomTextFormFieldWithTitle(
                     title: AppLocalizations.of(context)!.emailAddress,
