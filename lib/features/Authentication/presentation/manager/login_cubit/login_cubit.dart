@@ -3,6 +3,8 @@ import 'package:firebase_features/features/Authentication/presentation/manager/l
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:firebase_features/core/utils/globals.dart' as globals;
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitial());
@@ -30,13 +32,19 @@ class LoginCubit extends Cubit<LoginStates> {
       emit(LoginSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        emit(LoginFailureState(errorMessage: 'user not found'));
+        emit(LoginFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.userNotFound));
+        emit(StopLoadingLoginState());
       } else if (e.code == 'wrong-password') {
-        emit(LoginFailureState(errorMessage: 'wrong password'));
+        emit(LoginFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.wrongPassword));
+        emit(StopLoadingLoginState());
+      }else if(e.code == 'invalid-credential'){
+        emit(LoginFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.invalidEmailOrPassword));
+        emit(StopLoadingLoginState());
       }
     }
     on Exception {
-      emit(LoginFailureState(errorMessage: 'Something went wrong, please try later'));
+      emit(LoginFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.errorMsg));
+      emit(StopLoadingLoginState());
     }
   }
 }

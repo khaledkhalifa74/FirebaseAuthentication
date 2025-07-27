@@ -3,6 +3,7 @@ import 'package:firebase_features/core/utils/colors.dart';
 import 'package:firebase_features/core/utils/functions/success_failure_alert.dart';
 import 'package:firebase_features/core/utils/styles.dart';
 import 'package:firebase_features/core/widgets/custom_button.dart';
+import 'package:firebase_features/core/widgets/custom_loading_indicator.dart';
 import 'package:firebase_features/core/widgets/custom_text_form_field_with_title.dart';
 import 'package:firebase_features/core/widgets/language_drop_down.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
@@ -49,7 +50,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           successFailureAlert(
             context,
             isError: false,
-            message: 'Login success',
+            message: AppLocalizations.of(context)!.loginDoneSuccessfully,
           );
         }else if(state is LoginFailureState){
           successFailureAlert(
@@ -113,45 +114,57 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   const SizedBox(
                     height: 32,
                   ),
-                  CustomButton(
-                      text: AppLocalizations.of(context)!.login,
-                      borderColor: Colors.transparent,
-                      itemCallBack: (){
-                        if (_loginFormKey.currentState!.validate()){
-                          // login here
-                        }
-                      },
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  CustomButton(
-                    text: AppLocalizations.of(context)!.signUpForNewAcc,
-                    textColor: kButtonColor,
-                    backgroundColor: kWhiteColor,
-                    borderColor: kBorderColor,
-                    itemCallBack: (){
-                      globals.navigatorKey.currentState!.pushNamed(RegisterView.id);
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.or,
-                      style: Styles.textStyle16,
-                    ),
-                  ),
-                  CustomButton(
-                      text: AppLocalizations.of(context)!.loginWithGmail,
-                      textColor: kButtonColor,
-                      backgroundColor: kWhiteColor,
-                      borderColor: kBorderColor,
-                      itemCallBack: (){},
-                  ),
-                  const SizedBox(
-                    height: 16,
+                  isLoading == true
+                      ? const Center(
+                    child: CustomLoadingIndicator(),
+                  )
+                      : Column(
+                    children: [
+                      CustomButton(
+                          text: AppLocalizations.of(context)!.login,
+                          borderColor: Colors.transparent,
+                          itemCallBack: (){
+                            if (_loginFormKey.currentState!.validate()){
+                              // login here
+                              loginCubit.loginUser(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim(),
+                              );
+                            }
+                          },
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      CustomButton(
+                        text: AppLocalizations.of(context)!.signUpForNewAcc,
+                        textColor: kButtonColor,
+                        backgroundColor: kWhiteColor,
+                        borderColor: kBorderColor,
+                        itemCallBack: (){
+                          globals.navigatorKey.currentState!.pushNamed(RegisterView.id);
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                        ),
+                        child: Text(
+                          AppLocalizations.of(context)!.or,
+                          style: Styles.textStyle16,
+                        ),
+                      ),
+                      CustomButton(
+                          text: AppLocalizations.of(context)!.loginWithGmail,
+                          textColor: kButtonColor,
+                          backgroundColor: kWhiteColor,
+                          borderColor: kBorderColor,
+                          itemCallBack: (){},
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                    ],
                   ),
                 ],
               ),

@@ -1,8 +1,11 @@
 import 'package:firebase_features/core/utils/assets.dart';
+import 'package:firebase_features/core/utils/functions/success_failure_alert.dart';
 import 'package:firebase_features/core/widgets/custom_button.dart';
+import 'package:firebase_features/core/widgets/custom_loading_indicator.dart';
 import 'package:firebase_features/core/widgets/custom_text_form_field_with_title.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/register_cubit/register_states.dart';
+import 'package:firebase_features/features/Authentication/presentation/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -37,7 +40,33 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
     final emailRegex = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     return BlocConsumer<RegisterCubit, RegisterStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is StartLoadingRegisterState){
+          isLoading = true;
+        }else if (state is StopLoadingRegisterState){
+          isLoading = false;
+        }
+
+        if(state is RegisterSuccessState){
+          successFailureAlert(
+            context,
+            isError: false,
+            message: AppLocalizations.of(context)!.signupDoneSuccessfully,
+            onOkPresses: (){
+              globals.navigatorKey.currentState!.pushReplacementNamed(LoginView.id);
+            },
+            onDismiss: (){
+              globals.navigatorKey.currentState!.pushReplacementNamed(LoginView.id);
+            },
+          );
+        }else if(state is RegisterFailureState){
+          successFailureAlert(
+            context,
+            isError: true,
+            message: state.errorMessage!,
+          );
+        }
+      },
       builder: (context, state) {
         final registerCubit = RegisterCubit.get(context);
         return SingleChildScrollView(
@@ -194,12 +223,20 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                   const SizedBox(
                     height: 32,
                   ),
-                  CustomButton(
+                  isLoading == true
+                      ? const Center(
+                      child: CustomLoadingIndicator(),
+                  )
+                      : CustomButton(
                     text: AppLocalizations.of(context)!.signUp,
                     borderColor: Colors.transparent,
                     itemCallBack: (){
                       if (_registerFormKey.currentState!.validate()){
                         // register here
+                        registerCubit.registerUser(
+                            email: emailController.text,
+                            password: passwordController.text,
+                        );
                       }
                     },
                   ),

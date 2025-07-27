@@ -23,5 +23,12 @@
   "passwordDoesntMatch":"كلمة المرور غير متطابقة",
   "userName":"اسم المستخدم",
   "enterUserName":"أدخل اسم المستخدم",
-  "ok":"حسنا"
+  "ok":"حسنا",
+  "userNotFound":"لم يتم العثور على المستخدم",
+  "wrongPassword":"كلمة مرور خاطئة",
+  "errorMsg":"حدث خطأ ما، يرجى المحاولة لاحقًا",
+  "weakPassword":"كلمة المرور المقدمة ضعيفة للغاية",
+  "accountExist":"الحساب موجود بالفعل لهذا البريد الإلكتروني",
+  "signupDoneSuccessfully":"تم التسجيل بنجاح",
+  "invalidEmailOrPassword":"البريد الإلكتروني أو كلمة المرور غير صالحة"
 }

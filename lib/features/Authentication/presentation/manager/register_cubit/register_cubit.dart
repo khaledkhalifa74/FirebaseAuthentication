@@ -3,6 +3,8 @@ import 'package:firebase_features/features/Authentication/presentation/manager/r
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:firebase_features/core/utils/globals.dart' as globals;
 
 class RegisterCubit extends Cubit<RegisterStates> {
   RegisterCubit() : super(RegisterInitial());
@@ -42,13 +44,16 @@ class RegisterCubit extends Cubit<RegisterStates> {
       emit(StopLoadingRegisterState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        emit(RegisterFailureState(errorMessage: 'The password provided is too weak'));
+        emit(RegisterFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.weakPassword));
+        emit(StopLoadingRegisterState());
       } else if (e.code == 'email-already-in-use') {
-        emit(RegisterFailureState(errorMessage: 'The account already exists for that email'));
+        emit(RegisterFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.accountExist));
+        emit(StopLoadingRegisterState());
       }
     }
     on Exception {
-      emit(RegisterFailureState(errorMessage: 'something went wrong'));
+      emit(RegisterFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.errorMsg));
+      emit(StopLoadingRegisterState());
     }
   }
 }

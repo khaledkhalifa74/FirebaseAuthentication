@@ -95,5 +95,33 @@
   "ok":"Ok",
   "@ok":{
     "ok":""
+  },
+  "userNotFound":"User not found",
+  "@userNotFound":{
+    "userNotFound":""
+  },
+  "wrongPassword":"Wrong password",
+  "@wrongPassword":{
+    "wrongPassword":""
+  },
+  "errorMsg":"Something went wrong, please try later",
+  "@errorMsg":{
+    "errorMsg":""
+  },
+  "weakPassword":"The password provided is too weak",
+  "@weakPassword":{
+    "weakPassword":""
+  },
+  "accountExist":"The account already exists for that email",
+  "@accountExist":{
+    "accountExist":""
+  },
+  "signupDoneSuccessfully":"Sign up done successfully",
+  "@signupDoneSuccessfully":{
+    "signupDoneSuccessfully":""
+  },
+  "invalidEmailOrPassword":"Invalid email or password",
+  "@invalidEmailOrPassword":{
+    "invalidEmailOrPassword":""
   }
 }
