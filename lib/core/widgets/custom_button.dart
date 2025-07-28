@@ -9,6 +9,7 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final double? width;
   final IconData? icon;
+  final Widget? previousIcon;
   final Color? borderColor;
   final Color? textColor;
   final Color? backgroundColor;
@@ -36,7 +37,7 @@ class CustomButton extends StatelessWidget {
     this.isDisabled,
     this.disabledTextColor,
     this.disabledBorderColor,
-    this.disabledButtonColor,
+    this.disabledButtonColor, this.previousIcon,
   });
 
   @override
@@ -101,7 +102,27 @@ class CustomButton extends StatelessWidget {
                                 ),
                               ],
                             )
-                          : const SizedBox(),
+                          : previousIcon != null
+                          ? Row(
+                        children: [
+                          Text(
+                            text,
+                            style: Styles.textStyle16.copyWith(
+                                  color: isDisabled != null &&
+                                      isDisabled == true
+                                      ? disabledTextColor ?? kWhiteColor
+                                      : textColor ?? kWhiteColor,
+                                ),
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.visible,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          previousIcon!,
+                        ],
+                      )
+                          :
                       Flexible(
                         child: Text(
                           text,
