@@ -16,6 +16,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:firebase_features/core/utils/globals.dart' as globals;
+import 'dart:io' show Platform;
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -147,7 +148,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 16,
+                          vertical: 8,
                         ),
                         child: Text(
                           AppLocalizations.of(context)!.or,
@@ -155,13 +156,42 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         ),
                       ),
                       CustomButton(
-                          text: AppLocalizations.of(context)!.loginWithGmail,
-                          textColor: kButtonColor,
-                          backgroundColor: kWhiteColor,
-                          borderColor: kBorderColor,
-                          itemCallBack: (){},
+                        text: AppLocalizations.of(context)!.signInWithGmail,
+                        textColor: kButtonColor,
+                        backgroundColor: kWhiteColor,
+                        borderColor: kBorderColor,
+                        itemCallBack: (){
+                          loginCubit.signInWithGoogle();
+                        },
+                        previousIcon: SvgPicture.asset(
+                          AssetsData.googleIcon,
+                          height: 25,
+                          width: 25,
+                        ),
                       ),
-                      const SizedBox(
+                      Platform.isIOS
+                          ? Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: CustomButton(
+                              text: AppLocalizations.of(context)!.signInWithApple,
+                              textColor: kButtonColor,
+                              backgroundColor: kWhiteColor,
+                              borderColor: kBorderColor,
+                              itemCallBack: (){
+                                loginCubit.signInWithApple();
+                              },
+                              previousIcon: SvgPicture.asset(
+                                AssetsData.appleIcon,
+                                height: 30,
+                                width: 30,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                          : const SizedBox(
                         height: 16,
                       ),
                     ],

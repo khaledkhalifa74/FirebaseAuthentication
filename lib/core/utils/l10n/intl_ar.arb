@@ -10,7 +10,7 @@
   "enterPassword":"أدخل كلمة المرور",
   "enterConfirmPassword":"أدخل تأكيد كلمة المرور",
   "login":"تسجيل الدخول",
-  "loginWithGmail":"تسجيل الدخول عن طريق جوجل",
+  "signInWithGmail":"تسجيل الدخول باستخدام Google",
   "signUpForNewAcc":"سجل للحصول على حساب جديد",
   "or":"أو",
   "enterValidEmail":"يرجى إدخال بريد إلكتروني صحيح",
@@ -30,5 +30,10 @@
   "weakPassword":"كلمة المرور المقدمة ضعيفة للغاية",
   "accountExist":"الحساب موجود بالفعل لهذا البريد الإلكتروني",
   "signupDoneSuccessfully":"تم التسجيل بنجاح",
-  "invalidEmailOrPassword":"البريد الإلكتروني أو كلمة المرور غير صالحة"
+  "invalidEmailOrPassword":"البريد الإلكتروني أو كلمة المرور غير صالحة",
+  "signInFailed":"تم إلغاء تسجيل الدخول بواسطة المستخدم",
+  "signInCancelled":"تم إلغاء تسجيل الدخول",
+  "accountExistsWithDifferentCredential":"يوجد حساب موجود بالفعل بطريقة تسجيل دخول مختلفة",
+  "userDisabled":"تم تعطيل هذا المستخدم",
+  "signInWithApple":"تسجيل الدخول باستخدام Apple"
 }

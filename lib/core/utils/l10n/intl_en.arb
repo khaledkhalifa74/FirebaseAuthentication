@@ -40,9 +40,9 @@
   "@login":{
     "login":""
   },
-  "loginWithGmail":"Login with gmail",
-  "@loginWithGmail":{
-    "loginWithGmail":""
+  "signInWithGmail":"Sign in with Google",
+  "@signInWithGmail":{
+    "signInWithGmail":""
   },
   "signUpForNewAcc":"Sign up for new account",
   "@signUpForNewAcc":{
@@ -123,5 +123,25 @@
   "invalidEmailOrPassword":"Invalid email or password",
   "@invalidEmailOrPassword":{
     "invalidEmailOrPassword":""
+  },
+  "signInFailed":"Sign in aborted by user",
+  "@signInFailed":{
+    "signInFailed":""
+  },
+  "signInCancelled":"Sign in was cancelled",
+  "@signInCancelled":{
+    "signInCancelled":""
+  },
+  "accountExistsWithDifferentCredential":"An account already exists with a different sign-in method",
+  "@accountExistsWithDifferentCredential":{
+    "accountExistsWithDifferentCredential":""
+  },
+  "userDisabled":"This user has been disabled",
+  "@userDisabled":{
+    "userDisabled":""
+  },
+  "signInWithApple":"Sign in with Apple",
+  "@signInWithApple":{
+    "signInWithApple":""
   }
 }
