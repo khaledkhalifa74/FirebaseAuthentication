@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id ("org.jetbrains.kotlin.android")
     // START: FlutterFire Configuration
     id("com.google.gms.google-services")
     // END: FlutterFire Configuration
@@ -10,7 +11,7 @@ plugins {
 
 android {
     namespace = "com.example.firebase_features"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = "27.0.12077973"
 
     compileOptions {

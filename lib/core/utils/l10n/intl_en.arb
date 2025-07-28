@@ -143,5 +143,9 @@
   "signInWithApple":"Sign in with Apple",
   "@signInWithApple":{
     "signInWithApple":""
+  },
+  "appNeedsUpdate":"App needs to be updated",
+  "@appNeedsUpdate":{
+    "appNeedsUpdate":""
   }
 }

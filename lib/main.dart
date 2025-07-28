@@ -3,6 +3,7 @@ import 'package:firebase_features/features/Authentication/presentation/views/log
 import 'package:firebase_features/features/Authentication/presentation/views/register_view.dart';
 import 'package:firebase_features/firebase_options.dart';
 import 'package:firebase_features/simple_bloc_observer.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,12 +20,27 @@ void main()async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await initializeRemoteConfig();
   Bloc.observer = SimpleBlocObserver();
   runApp(
     const RestartWidget(
       child: MyApp(),
     ),
   );
+}
+
+// remote config
+Future<void> initializeRemoteConfig() async {
+  final remoteConfig = FirebaseRemoteConfig.instance;
+
+  await remoteConfig.setConfigSettings(
+    RemoteConfigSettings(
+      fetchTimeout: const Duration(seconds: 10),
+      minimumFetchInterval: const Duration(hours: 0),
+    ),
+  );
+
+  await remoteConfig.fetchAndActivate();
 }
 
 // restart widget

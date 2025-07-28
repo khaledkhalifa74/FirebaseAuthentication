@@ -127,10 +127,18 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           itemCallBack: (){
                             if (_loginFormKey.currentState!.validate()){
                               // login here
-                              loginCubit.loginUser(
-                                email: emailController.text.trim(),
-                                password: passwordController.text.trim(),
-                              );
+                              if(loginCubit.isNeedUpdate == true){
+                                successFailureAlert(
+                                  context,
+                                  isError: true,
+                                  message: AppLocalizations.of(context)!.appNeedsUpdate,
+                                );
+                              }else{
+                                loginCubit.loginUser(
+                                  email: emailController.text.trim(),
+                                  password: passwordController.text.trim(),
+                                );
+                              }
                             }
                           },
                       ),

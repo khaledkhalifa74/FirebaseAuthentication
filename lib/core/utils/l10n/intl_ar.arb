@@ -35,5 +35,6 @@
   "signInCancelled":"تم إلغاء تسجيل الدخول",
   "accountExistsWithDifferentCredential":"يوجد حساب موجود بالفعل بطريقة تسجيل دخول مختلفة",
   "userDisabled":"تم تعطيل هذا المستخدم",
-  "signInWithApple":"تسجيل الدخول باستخدام Apple"
+  "signInWithApple":"تسجيل الدخول باستخدام Apple",
+  "appNeedsUpdate":"التطبيق يحتاج إلى تحديث"
 }

@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/login_cubit/login_states.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -144,6 +146,32 @@ class LoginCubit extends Cubit<LoginStates> {
             .errorMsg,
       ));
       emit(StopLoadingLoginState());
+    }
+  }
+
+  // check isNeedUpdate
+  bool? isNeedUpdate;
+  Future<void> checkIsNeedUpdate() async {
+    final remoteConfig = FirebaseRemoteConfig.instance;
+
+    await remoteConfig.setConfigSettings(
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(seconds: 10),
+        minimumFetchInterval: const Duration(hours: 0),
+      ),
+    );
+    try {
+      await remoteConfig.fetchAndActivate();
+
+      isNeedUpdate = remoteConfig.getBool('isNeedUpdate');
+      if (kDebugMode) {
+        print('the bool is $isNeedUpdate');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Failed to fetch remote config: $e');
+      }
+      isNeedUpdate = null;
     }
   }
 
