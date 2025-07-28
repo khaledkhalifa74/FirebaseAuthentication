@@ -1,17 +1,30 @@
-# firebase_features
+# Firebase Features App
 
-A new Flutter project.
+This is a Flutter project that demonstrates modern app development using the **MVVM (Model-View-ViewModel)** design pattern. The app integrates multiple **Firebase services** to offer a complete authentication and monitoring experience.
 
-## Getting Started
+## 🔧 Technologies Used
 
-This project is a starting point for a Flutter application.
+- **Flutter Framework**
+- **MVVM Design Pattern**
+- **Firebase**:
+    - **Authentication**
+        - Sign Up and Sign In with Email & Password
+        - Sign In with Google (Android only)
+        - Sign In with Apple (iOS only)
+    - **Crashlytics** – For real-time crash reporting and debugging
+    - **Remote Config** – For dynamically updating app configurations
 
-A few resources to get you started if this is your first Flutter project:
+## 📦 Firebase Features Implemented
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 🔐 Authentication
+- Email & Password registration and login
+- Social logins:
+    - **Google Sign-In** (Android)
+    - **Apple Sign-In** (iOS)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# FirebaseAuthentication
+### 💥 Crashlytics
+- Automatically captures and reports crashes
+- Supports manual logging and forced test crashes
+
+### ⚙️ Remote Config
+- Dynamically control app behavior and UI without publishing updates
