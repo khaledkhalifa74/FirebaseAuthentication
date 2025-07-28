@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/login_cubit/login_states.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
@@ -46,7 +47,8 @@ class LoginCubit extends Cubit<LoginStates> {
         emit(StopLoadingLoginState());
       }
     }
-    on Exception {
+    on Exception catch(e,stack){
+      FirebaseCrashlytics.instance.recordError(e, stack);
       emit(LoginFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.errorMsg));
       emit(StopLoadingLoginState());
     }
@@ -79,7 +81,8 @@ class LoginCubit extends Cubit<LoginStates> {
 
       emit(StopLoadingLoginState());
       emit(LoginSuccessState());
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e,stack) {
+      FirebaseCrashlytics.instance.recordError(e, stack);
       String message = AppLocalizations.of(globals.navigatorKey.currentContext!)!.errorMsg;
 
       if (e.code == 'account-exists-with-different-credential') {
@@ -94,7 +97,8 @@ class LoginCubit extends Cubit<LoginStates> {
       }
       emit(LoginFailureState(errorMessage: message));
       emit(StopLoadingLoginState());
-    } catch (e) {
+    } catch (e,stack) {
+      FirebaseCrashlytics.instance.recordError(e, stack);
       emit(LoginFailureState(
         errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!
             .errorMsg,
@@ -140,7 +144,8 @@ class LoginCubit extends Cubit<LoginStates> {
 
       emit(LoginFailureState(errorMessage: message));
       emit(StopLoadingLoginState());
-    } catch (e) {
+    } catch (e,stack) {
+      FirebaseCrashlytics.instance.recordError(e, stack);
       emit(LoginFailureState(
         errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!
             .errorMsg,

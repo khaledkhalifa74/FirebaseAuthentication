@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_features/features/Authentication/presentation/views/login_view.dart';
 import 'package:firebase_features/features/Authentication/presentation/views/register_view.dart';
 import 'package:firebase_features/firebase_options.dart';
@@ -20,7 +21,18 @@ void main()async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // initialize remote config
   await initializeRemoteConfig();
+
+  // enable crashlytics collection
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  // for non-flutter errors
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
   Bloc.observer = SimpleBlocObserver();
   runApp(
     const RestartWidget(

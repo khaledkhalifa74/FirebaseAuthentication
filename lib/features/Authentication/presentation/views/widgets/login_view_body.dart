@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_features/core/utils/assets.dart';
 import 'package:firebase_features/core/utils/colors.dart';
 import 'package:firebase_features/core/utils/functions/success_failure_alert.dart';
@@ -151,7 +152,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         backgroundColor: kWhiteColor,
                         borderColor: kBorderColor,
                         itemCallBack: (){
-                          globals.navigatorKey.currentState!.pushNamed(RegisterView.id);
+                          FirebaseCrashlytics.instance.crash();
+                          //globals.navigatorKey.currentState!.pushNamed(RegisterView.id);
                         },
                       ),
                       Padding(

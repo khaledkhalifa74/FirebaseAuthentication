@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_features/features/Authentication/presentation/manager/register_cubit/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +43,8 @@ class RegisterCubit extends Cubit<RegisterStates> {
           .createUserWithEmailAndPassword(email: email, password: password);
       emit(RegisterSuccessState());
       emit(StopLoadingRegisterState());
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e,stack) {
+      FirebaseCrashlytics.instance.recordError(e, stack);
       if (e.code == 'weak-password') {
         emit(RegisterFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.weakPassword));
         emit(StopLoadingRegisterState());
@@ -51,7 +53,8 @@ class RegisterCubit extends Cubit<RegisterStates> {
         emit(StopLoadingRegisterState());
       }
     }
-    on Exception {
+    on Exception catch (e,stack) {
+      FirebaseCrashlytics.instance.recordError(e, stack);
       emit(RegisterFailureState(errorMessage: AppLocalizations.of(globals.navigatorKey.currentContext!)!.errorMsg));
       emit(StopLoadingRegisterState());
     }
